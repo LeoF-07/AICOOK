@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>AI Cook</title>
+        <script>
+            const CHAT_AI_URL = "{{ url_for('chat_ai') }}";
+        </script>
+        <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+
+    <body>
+        <div id="appbar">
+            <h1>Chef<span>AI Gilberto</span></h1>
+        </div>
+        
+        <img src="{{ url_for('static', filename='images/CuocoGilberto.png') }}" alt="Logo">
+
+        <p>
+            Benvenuti nella mia cucina, sono Gilberto! 
+            Oggi sono qui per guidarti tra ricette, segreti e ingredienti, con tutta la mia esperienza e… beh, sì, con una bella pancia che racconta storie di sapori autentici.
+            Come avrai già notato dal mio cappello alto e dal sorriso di chi ha passato una vita ai fornelli, 
+            mi chiamano il “cuoco dei cuochi”, ma la mia vera missione è semplice: 
+            rendere felice chi ha fame di sapere e di buoni piatti. 
+            Qui troverai il cuore della tradizione culinaria che ho raccolto nel tempo: 
+            generazioni di chef da tutto il mondo hanno condiviso i loro ricettari con me, e io li ho fatti miei per riportarli direttamente nella tua pentola.
+            Metti pure alla prova la mia conoscenza: chiedimi una ricetta, un ingrediente sostitutivo o un semplice dubbio in padella. 
+            Ti risponderò subito, passo dopo passo, unendo la mia saggezza culinaria alla tua voglia di sperimentare. 
+            Non importa se sei un principiante alle prime armi o un esperto ai fornelli: fai la tua domanda e lascia che la magia inizi. 
+            Io sono sempre pronto, tu indossa pure il grembiule… 
+            <strong>Forza è l'ora di CUCINARE!!</strong>
+        </p>
+
+        <button id="startButton">L'ORA DI CUCINARE!!!</button>
+    </body>
+</html>

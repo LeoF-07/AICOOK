@@ -1,0 +1,139 @@
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: radial-gradient(circle at top, #fdfbfb 0%, #ebedee 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    gap: 10px;
+}
+
+#uploadForm {
+    background: white;
+    padding: 3rem;
+    border-radius: 30px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 90%;
+    max-width: 400px;
+    border: 1px solid rgba(255,255,255,0.8);
+}
+
+#uploadForm::before {
+    content: "Carica Ricettario";
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2d3436;
+    margin-bottom: 10px;
+}
+
+#fileInput {
+    width: 100%;
+    padding: 8px;
+    background: #f8f9fa;
+    border: 2px dashed #dfe6e9;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+    color: #636e72;
+}
+
+#fileInput::file-selector-button {
+    margin-right: 20px;
+    border: none;
+    background: #2d3436;
+    padding: 8px 16px;
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: background 0.3s ease;
+}
+
+#fileInput::file-selector-button:hover {
+    background: #FF7675;
+}
+
+#fileInput:hover {
+    border-color: #ff7675;
+    background: #fff;
+}
+
+#uploadForm img {
+    max-width: 150px;
+    height: auto;
+    border-radius: 8px;
+}
+
+#fileInput:hover {
+    border-color: #ff7675;
+}
+
+#uploadForm button[type="submit"] {
+    width: 100%;
+    padding: 1rem;
+    background: #2d3436;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#uploadForm button[type="submit"]:hover {
+    background: #FF7675;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 118, 117, 0.3);
+}
+
+.back-link {
+    margin-top: 15px;
+    color: #636e72;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+#status {
+    padding: 1rem;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    display: none; 
+}
+
+#status:not(:empty) {
+    display: block;
+}
+
+#status.success {
+    background-color: #d1f7e6;
+    color: #0f5132;
+    border: 1px solid #badbcc;
+}
+
+#status.error {
+    background-color: #f8d7da;
+    color: #842029;
+    border: 1px solid #f5c2c7;
+}
+
+#status.loading {
+    background-color: #e2e3e5;
+    color: #41464b;
+    border: 1px solid #d3d3d4;
+    font-style: italic;
+}

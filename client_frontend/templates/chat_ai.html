@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Gilberto AI</title>
+        <script>
+            const INDEX_URL = "{{ url_for('home') }}";
+        </script>
+        <script>
+            const UPLOAD_RECIPE_BOOK_URL = "{{ url_for('upload_recipe_book') }}";
+        </script>
+        <script src="{{ url_for('static', filename='js/chat_ai.js') }}"></script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/chat_ai_style.css') }}">
+    </head>
+
+    <body>
+        <button id="backButton">Torna alla Home</button>
+
+        <form id="ChatAIForm">
+            <div style="padding: 1rem; text-align: center; border-bottom: 1px solid #eee;">
+                <strong style="color: #2d3436;">Gilberto AI</strong>
+            </div>
+
+            <div id="chatContainer">
+                <div class="message ai-message">Sono Gilberto il tuo cuoco di quartiere! Di cosa hai bisogno?</div>
+            </div>
+
+            <div class="input-area">
+                <input type="text" id="chatInput" placeholder="Chiedi a Gilberto...">
+                <button type="submit" id="sendButton">Invia</button>
+            </div>
+        </form>
+
+        <div class="nav-footer">
+            <button id="uploadPageButton">Vai al caricamento file</button>
+        </div>
+    </body>
+</html>

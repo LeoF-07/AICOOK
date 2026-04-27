@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Upload Recipe Book</title>
+        <script src="{{ url_for('static', filename='js/uploadFiles.js') }}"></script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/upload_recipe_book_style.css') }}">
+    </head>
+
+    <body>
+        <form id="uploadForm">
+            <img src="{{ url_for('static', filename='images/aiRicettario.png') }}" alt="Logo">
+            <input type="file" id="fileInput" name="file" accept=".pdf" required>
+            <button type="submit">Carica File</button>  
+            <a href="{{ url_for('chat_ai') }}" class="back-link">← Torna da Gilberto</a>
+        </form>
+        
+        <div id="status"></div>
+    </body>
+</html>
