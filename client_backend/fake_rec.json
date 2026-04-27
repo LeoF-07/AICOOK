@@ -1,0 +1,396 @@
+[
+  {
+    "nome": "LASAGNE CON VERDURINE",
+    "porzioni": 2,
+    "tempo_preparazione": null,
+    "tempo_cottura": null,
+    "difficolta": null,
+    "ingredienti": [
+      { "quantita": "100", "unita": "g", "nome": "pasta fresca in sfoglie per lasagne" },
+      { "quantita": "1", "unita": "cucchiaio", "nome": "olio d'oliva" },
+      { "quantita": "1", "unita": "spicchio", "nome": "aglio" },
+      { "quantita": "50", "unita": "g", "nome": "porro" },
+      { "quantita": "50", "unita": "g", "nome": "peperone" },
+      { "quantita": "50", "unita": "g", "nome": "carota" },
+      { "quantita": "50", "unita": "g", "nome": "sedano" },
+      { "quantita": "50", "unita": "g", "nome": "zucchine" },
+      { "quantita": "50", "unita": "g", "nome": "fagiolini" },
+      { "quantita": "50", "unita": "g", "nome": "pisellini" },
+      { "quantita": "10", "unita": "foglie", "nome": "spinaci" },
+      { "quantita": "10", "unita": "g", "nome": "farina" },
+      { "quantita": "2", "unita": "dl", "nome": "brodo vegetale" },
+      { "quantita": "10", "unita": "g", "nome": "parmigiano grattugiato" },
+      { "quantita": null, "unita": null, "nome": "sale" },
+      { "quantita": null, "unita": null, "nome": "pepe" }
+    ],
+    "procedimento": [
+      "Pulite tutte le verdure e tagliatele a dadini.",
+      "Lessate insieme fagiolini e pisellini per circa 10/15 minuti.",
+      "Fate dorare con lo spicchio d'aglio nella padella tutte le verdure crude e lasciate cuocere a fuoco medio per circa 10 minuti, mescolando spesso.",
+      "Unite anche le verdure lessate e proseguite la cottura per altri 10 minuti.",
+      "Salate, cospargete con la farina e mescolate bene.",
+      "Unite il brodo bollente e mescolate subito, lasciando ispessire a fuoco basso.",
+      "Lessate la pasta dopo aver rotto le sfoglie in due o tre pezzi.",
+      "Mescolate la pasta scolata con il sugo e versate in una pirofile antiaderente.",
+      "Cospargete con il formaggio e fate gratinare nel forno molto caldo per circa 10 minuti."
+    ],
+    "note": null
+  },
+  {
+    "nome": "GNOCCHI DI ZUCCA AL FORMAGGIO",
+    "porzioni": 1,
+    "tempo_preparazione": null,
+    "tempo_cottura": null,
+    "difficolta": null,
+    "ingredienti": [
+      { "quantita": "150", "unita": "g", "nome": "zucca gialla" },
+      { "quantita": "60", "unita": "g", "nome": "ricotta" },
+      { "quantita": "50", "unita": "g", "nome": "farina" },
+      { "quantita": "40", "unita": "g", "nome": "uova" },
+      { "quantita": null, "unita": null, "nome": "sugo di pomodoro" }
+    ],
+    "procedimento": [
+      "Unire alla polpa di zucca cotta al forno, ricotta, uova, parmigiano, farina e sale.",
+      "Lavorare bene l'impasto, formare dei gnocchi.",
+      "Lessarli in abbondante acqua.",
+      "Condirli con sugo di pomodoro, parmigiano."
+    ],
+    "note": null
+  },
+  {
+    "nome": "PASTA CON LE SARDE",
+    "porzioni": 1,
+    "tempo_preparazione": null,
+    "tempo_cottura": null,
+    "difficolta": null,
+    "ingredienti": [
+      { "quantita": "80", "unita": "g", "nome": "pasta" },
+      { "quantita": "1", "unita": "cucchiaio", "nome": "olio" },
+      { "quantita": "1", "unita": "spicchio", "nome": "aglio" },
+      { "quantita": null, "unita": null, "nome": "finocchio selvatico" },
+      { "quantita": "5", "unita": "g", "nome": "pinoli" },
+      { "quantita": "100", "unita": "g", "nome": "sarde" }
+    ],
+    "procedimento": [
+      "Scaldare l'olio extravergine d'oliva, aggiungere il pomodoro, il finocchio selvatico, i pinoli, e le sarde pulite e diliscate.",
+      "Cuocere la pasta e amalgamare il tutto."
+    ],
+    "note": null
+  },
+  {
+    "nome": "PASTA E FAGIOLI",
+    "porzioni": 1,
+    "tempo_preparazione": null,
+    "tempo_cottura": null,
+    "difficolta": null,
+    "ingredienti": [
+      { "quantita": "40", "unita": "g", "nome": "pasta" },
+      { "quantita": null, "unita": null, "nome": "aglio" },
+      { "quantita": null, "unita": null, "nome": "prezzemolo" },
+      { "quantita": null, "unita": null, "nome": "sedano" },
+      { "quantita": null, "unita": null, "nome": "carota" },
+      { "quantita": null, "unita": null, "nome": "cipolla" },
+      { "quantita": "50", "unita": "g", "nome": "pelati" },
+      { "quantita": "20", "unita": "g", "nome": "patate" },
+      { "quantita": "60", "unita": "g", "nome": "fagioli freschi" }
+    ],
+    "procedimento": [
+      "Mettere in pentola con abbondante acqua, i fagioli con odori e patate e a cottura ultimata passarli o frullarli.",
+      "In un tegame a parte far appassire l'aglio con po' di brodo vegetale, aggiungere i pelati, bollire per 15 minuti, salare e passare la salsa che andrà aggiunta al brodo di fagioli.",
+      "Cuocere la pasta nel brodo, a cottura ultimata aggiungere olio d'oliva, parmigiano, a piacere, e prezzemolo fresco tritato."
+    ],
+    "note": null
+  },
+  {
+    "nome": "SARDE",
+    "porzioni": 4,
+    "tempo_preparazione": null,
+    "tempo_cottura": null,
+    "difficolta": null,
+    "ingredienti": [
+      { "quantita": "20", "unita": null, "nome": "sarde di media grandezza" },
+      { "quantita": "2", "unita": "limoni", "nome": "limoni" },
+      { "quantita": "3", "unita": "cucchiai", "nome": "olio extra vergine di oliva" }
+    ],
+    "procedimento": [
+      "Disporre le sarde aperte in una teglia, spremendovi sopra il succo di 2 limoni e l'olio.",
+      "Lasciare riposare qualche minuto e infornare in forno caldo per 10 minuti.",
+      "A discrezione l'uso di sale e pepe."
+    ],
+    "note": null
+  },
+  {
+    "nome": "SPIGOLA AL FORNO CON POMODORI PATATE E ZUCCHINE",
+    "porzioni": 1,
+    "tempo_preparazione": null,
+    "tempo_cottura": null,
+    "difficolta": null,
+    "ingredienti": [
+      { "quantita": "150", "unita": "g", "nome": "spigola" },
+      { "quantita": "50", "unita": "g", "nome": "patate" },
+      { "quantita": "20", "unita": "g", "nome": "zucchine" },
+      { "quantita": "50", "unita": "g", "nome": "pomodorini" },
+      { "quantita": "10", "unita": "g", "nome": "olio" },
+      { "quantita": null, "unita": null, "nome": "aglio" },
+      { "quantita": null, "unita": null, "nome": "prezzemolo" }
+    ],
+    "procedimento": [
+      "Tagliare a rondelle le verdure e infornarle, a metà cottura aggiungere l'orata con 1 spicchio d'aglio tagliato a metà.",
+      "A fine cottura aggiungere l'olio e prezzemolo tritato."
+    ],
+    "note": null
+  },
+  {
+    "nome": "CARPACCIO DI PESCE SPADA",
+    "porzioni": 1,
+    "tempo_preparazione": null,
+    "tempo_cottura": null,
+    "difficolta": null,
+    "ingredienti": [
+      { "quantita": "60", "unita": "g", "nome": "pesce spada" },
+      { "quantita": "10", "unita": "g", "nome": "olio" },
+      { "quantita": null, "unita": null, "nome": "limone" },
+      { "quantita": null, "unita": null, "nome": "aceto balsamico" },
+      { "quantita": null, "unita": null, "nome": "pepe verde e rosa in grani" },
+      { "quantita": null, "unita": null, "nome": "sedano a scaglie sottili" }
+    ],
+    "procedimento": [
+      "fare il carpaccio, emulsionare tutti gli ingredienti e mettere in infusione per qualche ora prima di servire condire con scaglie di sedano."
+    ],
+    "note": null
+  },
+  {
+    "nome": "ROMBO CON PATATE E OLIVE NERE",
+    "porzioni": 1,
+    "tempo_preparazione": null,
+    "tempo_cottura": null,
+    "difficolta": null,
+    "ingredienti": [
+      { "quantita": "120", "unita": "g", "nome": "rombo" },
+      { "quantita": "100", "unita": "g", "nome": "patate" },
+      { "quantita": "25", "unita": "g", "nome": "olive nere" },
+      { "quantita": "10", "unita": "g", "nome": "olio" },
+      { "quantita": null, "unita": null, "nome": "aglio" },
+      { "quantita": null, "unita": null, "nome": "rosmarino" }
+    ],
+    "procedimento": [
+      "tagliare le patate a cubetti e deporle in una teglia sopra un foglio di carta da forno, aggiungere 1 spicchio d'aglio e infornarle.",
+      "A metà cottura aggiungere il rombo con rosmarino aglio e olive nere.",
+      "A fine cottura aggiungere l'olio."
+    ],
+    "note": null
+  },
+  {
+    "nome": "STRACCETTI DI POLLO AL BALSAMICO",
+    "porzioni": 1,
+    "tempo_preparazione": null,
+    "tempo_cottura": null,
+    "difficolta": null,
+    "ingredienti": [
+      { "quantita": "100", "unita": "g", "nome": "straccetti di pollo" },
+      { "quantita": null, "unita": null, "nome": "aceto balsamico" },
+      { "quantita": "5", "unita": "g", "nome": "uva sultanina" },
+      { "quantita": "5", "unita": "g", "nome": "pinoli" },
+      { "quantita": "10", "unita": "g", "nome": "olio" },
+      { "quantita": null, "unita": null, "nome": "rucola" },
+      { "quantita": null, "unita": null, "nome": "aglio" }
+    ],
+    "procedimento": [
+      "Tirare gli straccetti di pollo con olio e aglio, unire l'uva sultanina ammollata in acqua, i pinoli e l'aceto balsamico far evaporare condire con rucola e servire."
+    ],
+    "note": null
+  },
+  {
+    "nome": "POMODORI RIPIENI DI RISO",
+    "porzioni": 4,
+    "tempo_preparazione": null,
+    "tempo_cottura": null,
+    "difficolta": null,
+    "ingredienti": [
+      { "quantita": "8", "unita": null, "nome": "pomidoro non troppo grossi" },
+      { "quantita": "1", "unita": "cucchiai", "nome": "erba cipollina tritata" },
+      { "quantita": "8", "unita": "cucchiai", "nome": "riso" },
+      { "quantita": "200", "unita": "g", "nome": "formaggio tipo emmenthal tagliato finemente" },
+      { "quantita": "1", "unita": null, "nome": "uovo sodo tritato finemente" },
+      { "quantita": null, "unita": null, "nome": "pugno di capperi" },
+      { "quantita": "4", "unita": "cucchiai", "nome": "olio extravergine d'oliva" },
+      { "quantita": null, "unita": null, "nome": "sale" }
+    ],
+    "procedimento": [
+      "Tagliare il cappuccio ai pomidoro vuotarli salarli internamente, metterli a scolare con la parte tagliata rivolta verso il basso.",
+      "Lessare il riso, scolarlo al dente e passarlo sotto l'acqua fredda, mescolare al riso l'erba cipollina, il formaggio, l'uovo sodo, l'olio e parte l'interno dei pomidoro tagliati finemente, riempire con il composto i pomidoro, accomodarli su un piatto di portata e servire."
+    ],
+    "note": null
+  },
+  {
+    "nome": "INSALATA MISTA CON RADICCHIO ROSSO",
+    "porzioni": 4,
+    "tempo_preparazione": null,
+    "tempo_cottura": null,
+    "difficolta": null,
+    "ingredienti": [
+      { "quantita": "400", "unita": "g", "nome": "radicchio rosso" },
+      { "quantita": "2", "unita": "mele verdi", "nome": "mele verdi" },
+      { "quantita": "8-10", "unita": "noci", "nome": "noci" },
+      { "quantita": "40", "unita": "g", "nome": "olio extra vergine di oliva" },
+      { "quantita": null, "unita": null, "nome": "sale" },
+      { "quantita": null, "unita": null, "nome": "aceto balsamico" },
+      { "quantita": null, "unita": null, "nome": "pepe" }
+    ],
+    "procedimento": [
+      "Lavare bene il radicchio e tagliarlo a julienne disporlo nella insalatiera, aggiungere la mela sbucciata e tagliata a fettine sottili, i gherigli di noce e condire con olio, aceto balsamico, sale e pepe a piacimento."
+    ],
+    "note": null
+  },
+  {
+    "nome": "CIPOLLE IN AGRODOLCE",
+    "porzioni": 4,
+    "tempo_preparazione": null,
+    "tempo_cottura": null,
+    "difficolta": null,
+    "ingredienti": [
+      { "quantita": "500", "unita": "g", "nome": "cipolline" },
+      { "quantita": "1", "unita": "cucchiaio", "nome": "zuccharo" },
+      { "quantita": "1", "unita": "tazza", "nome": "aceto" }
+    ],
+    "procedimento": [
+      "Lavare le cipolline e metterle in padella con sale e pepe, appena hanno preso colore aggiungere un cucchiaio di zucchero poi una tazza d'aceto e farle cuocere coperte."
+    ],
+    "note": null
+  },
+  {
+    "nome": "FAGIOLINI TRIFOLATI",
+    "porzioni": 4,
+    "tempo_preparazione": null,
+    "tempo_cottura": null,
+    "difficolta": null,
+    "ingredienti": [
+      { "quantita": "700", "unita": "g", "nome": "fagiolini" },
+      { "quantita": null, "unita": null, "nome": "prezzemolo" },
+      { "quantita": null, "unita": null, "nome": "timo" },
+      { "quantita": null, "unita": null, "nome": "capperi" },
+      { "quantita": "4", "unita": null, "nome": "acciughe" },
+      { "quantita": "2", "unita": "piccole", "nome": "cipolle" },
+      { "quantita": "40", "unita": "g", "nome": "olio extra vergine di oliva" },
+      { "quantita": "1", "unita": "cucchiaio", "nome": "aceto" },
+      { "quantita": "1", "unita": "spicchio", "nome": "aglio" }
+    ],
+    "procedimento": [
+      "Pulire e lessare i fagiolini in poca acqua salata poi scolarli, tritare le acciughe lavate e diliscate assieme ai capperi sott'aceto, timo, prezzemolo, aglio e cipolla. Fare scaldare il trito e aggiungere i fagiolini mescolando bene, salare, pepare e unire l'aceto lasciandolo evaporare a fuoco vivo; per ultimo aggiungere l'olio di oliva, versarli su un piatto da portata."
+    ],
+    "note": null
+  },
+  {
+    "nome": "INVOLTINI DI MELANZANE",
+    "porzioni": 4,
+    "tempo_preparazione": null,
+    "tempo_cottura": null,
+    "difficolta": null,
+    "ingredienti": [
+      { "quantita": null, "unita": null, "nome": "grossa melanzana lunga" },
+      { "quantita": "100", "unita": "g", "nome": "mozzarella" },
+      { "quantita": "16", "unita": "foglioline", "nome": "basilico" },
+      { "quantita": "20", "unita": "g", "nome": "parmigiano o grana grattugiato" },
+      { "quantita": "1", "unita": "spicchio", "nome": "aglio" },
+      { "quantita": "1", "unita": "cucchiaio", "nome": "olio d'oliva" },
+      { "quantita": "150", "unita": "cucchiai", "nome": "passata di pomodoro" },
+      { "quantita": null, "unita": null, "nome": "sale" }
+    ],
+    "procedimento": [
+      "Spuntate la melanzana e tagliatela a fette. Dovete ricavarne 16 fette abbastanza sottili. Mettete le fette a strati in una ciotola cospargendole con sale fino. Lasciate riposare per circa 1 ora, quindi strizzatele bene e cuocetele alla griglia oppure su una piastra rovente. Preparate una salsa di pomodoro con spicchio d'aglio. Lasciate cuocere a fuoco basso per circa 10 minuti e salate leggermente. Sistemate, ad una estremità di ogni fetta di melanzana, un pezzo di mozzarella con una foglia di basilico. Se le foglie sono grandi, usate ne solo un pezzo. Arrotolate gli involtini e sistemateli in una pirofila oleata. Versatevi sopra la salsa di pomodoro e cospargete con il formaggio grattugiato. Passate nel forno ben caldo per circa 10 minuti. Servite caldo oppure lasciate intiepidire."
+    ],
+    "note": null
+  },
+  {
+    "nome": "VERDURE GRIGLIATE",
+    "porzioni": 1,
+    "tempo_preparazione": null,
+    "tempo_cottura": null,
+    "difficolta": null,
+    "ingredienti": [
+      { "quantita": "50", "unita": "g", "nome": "peperoni" },
+      { "quantita": "50", "unita": "g", "nome": "melanzane" },
+      { "quantita": "50", "unita": "g", "nome": "zucchine" },
+      { "quantita": "50", "unita": "g", "nome": "pomodori" },
+      { "quantita": "50", "unita": "g", "nome": "insalata belga" },
+      { "quantita": "50", "unita": "g", "nome": "radicchio travisano" },
+      { "quantita": "10", "unita": "g", "nome": "olio" },
+      { "quantita": null, "unita": null, "nome": "aglio" },
+      { "quantita": null, "unita": null, "nome": "prezzemolo" }
+    ],
+    "procedimento": [
+      "tagliare a fette le verdure e grigliarle al forno. Alla fine aggiungere un'emulsione di olio prezzemolo e uno spicchio d'aglio tagliato a metà."
+    ],
+    "note": null
+  },
+  {
+    "nome": "POMODORI GRATINATI",
+    "porzioni": 1,
+    "tempo_preparazione": null,
+    "tempo_cottura": null,
+    "difficolta": null,
+    "ingredienti": [
+      { "quantita": "100", "unita": "g", "nome": "pomodori" },
+      { "quantita": "20", "unita": "g", "nome": "pan grattato" },
+      { "quantita": "10", "unita": "g", "nome": "parmigiano" },
+      { "quantita": "5", "unita": "g", "nome": "origano" },
+      { "quantita": "5", "unita": "g", "nome": "prezzemolo" },
+      { "quantita": "10", "unita": "g", "nome": "olio" }
+    ],
+    "procedimento": [
+      "grigliare i pomodori al forno, a metà cottura aggiungere pane grattugiato, parmigiano, origano, prezzemolo e olio."
+    ],
+    "note": null
+  },
+  {
+    "nome": "BIETOLA AL BALSAMICO",
+    "porzioni": 1,
+    "tempo_preparazione": null,
+    "tempo_cottura": null,
+    "difficolta": null,
+    "ingredienti": [
+      { "quantita": "150", "unita": "g", "nome": "bietola" },
+      { "quantita": null, "unita": null, "nome": "aglio" },
+      { "quantita": null, "unita": null, "nome": "prezzemolo" },
+      { "quantita": "5", "unita": "g", "nome": "olio" },
+      { "quantita": null, "unita": null, "nome": "aceto balsamico" }
+    ],
+    "procedimento": [
+      "cuocere la bietola con olio, prezzemolo, e a fine cottura aggiungere aceto balsamico"
+    ],
+    "note": null
+  },
+  {
+    "nome": "SORBETTO AL LIMONE",
+    "porzioni": 1,
+    "tempo_preparazione": null,
+    "tempo_cottura": null,
+    "difficolta": null,
+    "ingredienti": [
+      { "quantita": "220", "unita": "g", "nome": "acqua" },
+      { "quantita": "40", "unita": "g", "nome": "zucchero" },
+      { "quantita": "1", "unita": "piccolo", "nome": "limone" }
+    ],
+    "procedimento": [
+      "grattugiare la scorza del limone, non trattato, e spremere il succo. In un pentolino sciogliere lo zucchero nell'acqua e lasciarlo sul fuoco girando con un cucchiaio di legno fino a che la consistenza non sarà quella di uno sciroppo. A questo punto mescolare per un paio di minuti ed aggiungere il succo e la scorza del limone, far cuocere per un quarto d'ora e raffreddare in una ci otola di vetro o metallo. Riporre in freezer lo sciroppo raffreddato precedentemente, avendo cura di girarlo di tanto in tanto. Consumare il sorbetto dopo almeno un paio di giorni."
+    ],
+    "note": null
+  },
+  {
+    "nome": "ANANAS AI MIRTILLI",
+    "porzioni": 1,
+    "tempo_preparazione": null,
+    "tempo_cottura": null,
+    "difficolta": null,
+    "ingredienti": [
+      { "quantita": "150", "unita": "g", "nome": "ananas fresco" },
+      { "quantita": "10", "unita": "g", "nome": "zucchero di canna" },
+      { "quantita": "10", "unita": "g", "nome": "mirtilli" },
+      { "quantita": null, "unita": null, "nome": "vaniglia" }
+    ],
+    "procedimento": [
+      "Disponete l'ananas tagliato a fette in una teglia da forno cospargete con zucchero di canna e pezzi di vaniglia. Cuocere per 6 o 7 minuti al grill mescolare i mirtilli al fondo di cottura e disporli sull'ananas."
+    ],
+    "note": null
+  }
+]
