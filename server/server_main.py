@@ -21,8 +21,12 @@ cursor = db_conn.cursor()
 workers = []
 lock = threading.Lock()
 
+client = None
+
 
 def handle_client(conn):
+    global client
+
     with conn:
         print(f"Connessione aperta: {conn}")
 
@@ -33,7 +37,7 @@ def handle_client(conn):
                 chunk = conn.recv(4096)
                 if not chunk:
                     print("Connessione chiusa dal client")
-                    workers.clear()
+                    # workers.clear()
                     break
 
                 buffer += chunk
@@ -92,7 +96,17 @@ def handle_client(conn):
 
                             db_conn.commit()
 
+                        response = {
+                            "type": "scanned"
+                        }
+
+                        resp_bytes = (json.dumps(response) + "\n").encode("utf-8")
+                        client.sendall(struct.pack('!I', len(resp_bytes)) + resp_bytes)
+                        # client.sendall(resp_bytes)
+
                     elif action == "scanpdf":
+                        client = conn
+
                         file_b64 = payload.get("file")
 
                         if not file_b64:
@@ -123,7 +137,7 @@ def handle_client(conn):
                                 print(text)
 
                             except Exception as e:
-                                print("Errore PDF:", e)
+                                print("Errore PDF (forse):", e)
                                 response = {
                                     "status": "error",
                                     "message": "Errore parsing PDF"
@@ -136,8 +150,8 @@ def handle_client(conn):
                         }
 
                     # invio risposta (CON \n)
-                    resp_bytes = (json.dumps(response) + "\n").encode("utf-8")
-                    #workers[0].sendall(struct.pack('!I', len(resp_bytes)) + resp_bytes)
+                    # resp_bytes = (json.dumps(response) + "\n").encode("utf-8")
+                    # workers[0].sendall(struct.pack('!I', len(resp_bytes)) + resp_bytes)
                     # conn.sendall(resp_bytes)
 
         except Exception as e:

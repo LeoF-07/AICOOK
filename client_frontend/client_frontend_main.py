@@ -1,3 +1,5 @@
+import struct
+
 from flask import Flask, render_template, request, jsonify
 import socket
 import json
@@ -73,49 +75,20 @@ def upload_file():
             # invio semplice con newline
             s.sendall(payload_bytes)
 
-            # 5. risposta (newline-based)
-            resp_data = recv_until_newline(s)
-            response = json.loads(resp_data.decode("utf-8"))
+            # leggo i primi 4 byte
+            header = s.recv(4)
+            msg_len = struct.unpack("!I", header)[0]
 
-        return jsonify({"message": response}), 200
+            # leggo il JSON
+            resp_data = s.recv(msg_len)
+
+            response = json.loads(resp_data.decode("utf-8"))
+            print(response)
+
+        return jsonify(response), 200
     else:
         return jsonify({"error": "Formato non consentito. Solo PDF."}), 400
 
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
-
-
-
-'''
-from flask import Flask, request, jsonify
-from flask_cors import CORS
-import os
-
-app = Flask(__name__)
-CORS(app)
-
-UPLOAD_FOLDER = 'uploads'
-if not os.path.exists(UPLOAD_FOLDER):
-    os.makedirs(UPLOAD_FOLDER)
-
-@app.route('/upload', methods=['POST'])
-def upload_file():
-    if 'file' not in request.files:
-        return jsonify({"error": "Nessun file inviato"}), 400
-    
-    file = request.files['file']
-
-    if file.filename == '':
-        return jsonify({"error": "Nome del file vuoto"}), 400
-
-    if file and file.filename.lower().endswith('.pdf'):
-        filepath = os.path.join(UPLOAD_FOLDER, file.filename)
-        file.save(filepath)
-        return jsonify({"message": f"File {file.filename} caricato con successo!"}), 200
-    else:
-        return jsonify({"error": "Formato non consentito. Solo PDF."}), 400
-
-if __name__ == '__main__':
-    app.run(port=1717, debug=True)
-'''

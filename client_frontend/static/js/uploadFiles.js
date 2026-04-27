@@ -34,10 +34,15 @@ document.addEventListener('DOMContentLoaded', () => {
             method: 'POST',
             body: formData
         })
-        .then(response => response.text())
+        .then(response => response.json())
         .then(data => {
-            status.innerText = "Caricamento avvenuto con successo!!!";
-            status.className = "success";
+            console.log(data);
+
+            if(data.type == "scanned"){
+                status.innerText = "Caricamento avvenuto con successo!!!";
+                status.className = "success";
+            }
+
             console.log('data:', data);
         })
         .catch(error => {
