@@ -3,19 +3,46 @@ import socket
 import logging
 from langchain_community.llms import Ollama
 
-SERVER_HOST = '127.0.0.1'
+SERVER_HOST = 'localhost'
 SERVER_PORT = 63452
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.DEBUG)
-ollama = Ollama(model = "qwen3.5:4b")
+ollama = Ollama(model = "qwen3:8b")
 
 def split_recipes(full_text):
     logger.info("Extracting recipes from text")
     response = ollama.invoke([
     {
         "role": "system",
-        "content": "Sei un assistente specializzato nell'estrazione strutturata di ricette da testi.\n            Estrai TUTTE le ricette presenti nel testo fornito.\n            Rispondi SOLO con un array JSON valido, senza markdown, senza testo aggiuntivo.\n            \n            Ogni ricetta deve avere questo schema:\n            {\n                \"nome\": \"string\",\n                \"porzioni\": \"string | null\",\n                \"tempo_preparazione\": \"string | null\",\n                \"tempo_cottura\": \"string | null\",\n                \"difficolta\": \"string | null\",\n                \"ingredienti\": [\n                    { \"quantita\": \"string | null\", \"unita\": \"string | null\", \"nome\": \"string\" }\n                ],\n                \"procedimento\": [\"step1\", \"step2\", ...],\n                \"note\": \"string | null\"\n            }\n            \n            REGOLE IMPORTANTI:\n            - Se una ricetta sembra incompleta (testo troncato a inizio o fine), non estrarla.\n            - Se non trovi ricette, restituisci un array vuoto: []\n            - Non inventare dati mancanti, usa null.\n            - Normalizza le unità di misura (g, kg, ml, l, cucchiai, cucchiaini, tazze...).\n"
+        "content": 
+            """
+            Sei un assistente specializzato nell'estrazione strutturata di ricette da testi.
+            Estrai TUTTE le ricette presenti nel testo fornito.
+            Rispondi SOLO con un array JSON valido, senza markdown, senza testo aggiuntivo.
+            
+            Ogni ricetta deve avere questo schema:
+                {
+                    "nome": "string",
+                    "porzioni": "string | null",
+                    "tempo_preparazione": "string | null",
+                    "tempo_cottura": "string | null",
+                    "difficolta": "string | null",
+                    "ingredienti": [
+                        {
+                            "quantita": "string | null",
+                            "unita": "string | null", "nome": "string"
+                        }
+                    ],
+                    "procedimento": ["step1", "step2", ...],
+                    "note": "string | null"
+                }
+                REGOLE IMPORTANTI:
+                    - Se una ricetta sembra incompleta (testo troncato a inizio o fine), non estrarla.
+                    - Se non trovi ricette, restituisci un array vuoto: []
+                    - Non inventare dati mancanti, usa null.
+                    - Normalizza le unità di misura (g, kg, ml, l, cucchiai, cucchiaini, tazze...).
+            """
     },
     {
         "role": "user",
@@ -76,15 +103,15 @@ def generate_response(user_request, db_response):
 def handle_message(message):
     if message["type"] == "scanpdf":
         full_text = message["pdf_text"]
-        # recipes = split_recipes(full_text)
+        recipes = split_recipes(full_text)
         # load from file
-        with open("fake_rec.json", "r") as f:
-            recipes = json.load(f)
+        #with open("fake_rec.json", "r") as f:
+        #    recipes = json.load(f)
         return {"action": "recipes", "recipes": recipes}
     elif message["type"] == "genquery":
         user_request = message["request"]
         query = generate_query(user_request)
-        return {"action": "query", "query": query}
+        return {"action": "query", "query": query, "request": user_request}
     elif message["type"] == "genresponse":
         user_request = message["request"]
         db_response = message["db_response"]

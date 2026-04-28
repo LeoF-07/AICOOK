@@ -31,7 +31,10 @@ document.addEventListener('DOMContentLoaded', () => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ prompt: message })
+            body: JSON.stringify({
+                 prompt: message,
+                 action: "question",
+            })
         })
         .then(response => response.json())
         .then(data => {

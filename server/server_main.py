@@ -142,7 +142,46 @@ def handle_client(conn):
                                     "status": "error",
                                     "message": "Errore parsing PDF"
                                 }
+                                
+                    elif action == "question":
+                        prompt = payload.get('prompt')
+                        
+                        response = {
+                            "type": "genquery",
+                            "request": prompt
+                        }
 
+                        resp_bytes = (json.dumps(response) + "\n").encode("utf-8")
+                        workers[0].sendall(struct.pack('!I', len(resp_bytes)) + resp_bytes)
+                        
+                    elif action == "query":
+                        query = payload.get("query")
+                        cursor.execute(query)
+                        db_conn.commit()
+                        
+                        results = cursor.fetchall()
+                        
+                        response = {
+                            "type": "genresponse",
+                            "request": payload.get("request"),
+                            "db_response": results
+                        }
+
+                        resp_bytes = (json.dumps(response) + "\n").encode("utf-8")
+                        workers[0].sendall(struct.pack('!I', len(resp_bytes)) + resp_bytes)
+                        
+                        
+                    elif action == "response":
+                        res = payload.get("response")
+
+                        response = {
+                            "type": "response",
+                            "response": res
+                        }
+
+                        resp_bytes = (json.dumps(response) + "\n").encode("utf-8")
+                        client.sendall(struct.pack('!I', len(resp_bytes)) + resp_bytes)
+                        
                     else:
                         response = {
                             "status": "error",

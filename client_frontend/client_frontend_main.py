@@ -89,6 +89,33 @@ def upload_file():
     else:
         return jsonify({"error": "Formato non consentito. Solo PDF."}), 400
 
+@app.route('/chat', methods=['POST'])
+def chat():
+    payload = {
+        "action": request.files['action'],
+        "prompt": request.files['prompt']
+    }
+    
+    payload_bytes = (json.dumps(payload) + "\n").encode("utf-8")
+
+    # 4. Socket TCP
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.connect((TCP_HOST, TCP_PORT))
+
+        # invio semplice con newline
+        s.sendall(payload_bytes)
+
+        # leggo i primi 4 byte
+        header = s.recv(4)
+        msg_len = struct.unpack("!I", header)[0]
+
+        # leggo il JSON
+        resp_data = s.recv(msg_len)
+
+        response = json.loads(resp_data.decode("utf-8"))
+        print(response)
+
+    return jsonify(response), 200
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
