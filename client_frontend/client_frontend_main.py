@@ -8,7 +8,7 @@ import os
 
 app = Flask(__name__)
 
-TCP_HOST = "127.0.0.1"
+TCP_HOST = "192.168.15.3"
 TCP_PORT = 63452
 
 UPLOAD_FOLDER = 'uploads'
@@ -92,8 +92,8 @@ def upload_file():
 @app.route('/chat', methods=['POST'])
 def chat():
     payload = {
-        "action": request.files['action'],
-        "prompt": request.files['prompt']
+        "prompt": request.json['prompt'],
+        "action": request.json['action'],
     }
     
     payload_bytes = (json.dumps(payload) + "\n").encode("utf-8")
