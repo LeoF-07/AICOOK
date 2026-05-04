@@ -144,7 +144,9 @@ def handle_client(conn):
                                 }
                                 
                     elif action == "question":
+                        client = conn
                         prompt = payload.get('prompt')
+                        print(f"Question: {prompt}")
                         
                         response = {
                             "type": "genquery",
@@ -156,10 +158,15 @@ def handle_client(conn):
                         
                     elif action == "query":
                         query = payload.get("query")
+
+                        print(f"Query: {query}\n\n")
+
                         cursor.execute(query)
-                        db_conn.commit()
+                        #db_conn.commit()
                         
                         results = cursor.fetchall()
+
+                        print(f"Results: {results}\n\n")
                         
                         response = {
                             "type": "genresponse",
@@ -167,12 +174,16 @@ def handle_client(conn):
                             "db_response": results
                         }
 
+                        print(f"Response: {response}\n\n")
+
                         resp_bytes = (json.dumps(response) + "\n").encode("utf-8")
                         workers[0].sendall(struct.pack('!I', len(resp_bytes)) + resp_bytes)
                         
                         
                     elif action == "response":
                         res = payload.get("response")
+
+                        print(f"Response: {res}")
 
                         response = {
                             "type": "response",
@@ -194,6 +205,7 @@ def handle_client(conn):
                     # conn.sendall(resp_bytes)
 
         except Exception as e:
+            workers.clear()
             print("Errore connessione:", e)
 
 
