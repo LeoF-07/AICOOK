@@ -3,12 +3,12 @@ import socket
 import logging
 from langchain_community.llms import Ollama
 
-SERVER_HOST = 'localhost'
+SERVER_HOST = '192.168.15.3'
 SERVER_PORT = 63452
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.DEBUG)
-ollama = Ollama(model = "qwen3:8b")
+ollama = Ollama(model = "qwen3.5:4b")
 
 def split_recipes(full_text):
     logger.info("Extracting recipes from text")
@@ -58,7 +58,8 @@ def generate_query(user_request):
     {
         "role": "system",
         "content": f"""Sei un assistente che trasforma richieste in query strutturate.
-            Riceverai una richiesta testuale e dovrai rispondere SOLO con una query SQL valida, senza markdown, senza testo aggiuntivo.
+            Riceverai una richiesta testuale e dovrai rispondere SOLO con una query SQL valida, SENZA markdown, senza testo aggiuntivo.
+            Crea una query che NON sia case-sensitive e che usi LIKE per confrontare stringhe, in modo da essere più flessibile.
             
             Lo schema del database è il seguente:
             - ricette(id, nome, porzioni, tempo, tipologia)
@@ -73,7 +74,7 @@ def generate_query(user_request):
         "content": user_request
     }])
     print(response)
-    return json.loads(response)
+    return response
 
 def generate_response(user_request, db_response):
     logger.info(f"Generating response for user request: {user_request} with db response: {db_response}")
@@ -82,14 +83,7 @@ def generate_response(user_request, db_response):
         "role": "system",
         "content": f"""Sei un assistente che trasforma risposte di database in risposte testuali per l'utente.
             Riceverai una richiesta testuale e una risposta del database (in formato JSON).
-            Devi rispondere SOLO con una risposta testuale chiara e concisa, senza markdown, senza testo aggiuntivo.
-            
-            La risposta del database sarà un array di oggetti, ad esempio:
-            [
-                {"nome": "Pasta al pomodoro", "porzioni": 4, "tempo": "30 min", "tipologia": "primo"},
-                ...
-            ]
-
+            Devi rispondere SOLO con una risposta testuale chiara e concisa, SENZA markdown (QUINDI SENZA ```, SOLO STA MALEDDETTA QUERY), SENZA testo aggiuntivo (COME ECCO LA TUA QUERY).
             Analizza la richiesta e la risposta del database e genera una risposta testuale che soddisfi la richiesta dell'utente.
             """
     },
@@ -129,12 +123,13 @@ def main():
 
         while True:
             data = s.recv(24*1024)  # Receive up to 24KB of data
-            string = data.decode().strip()
+            logger.debug(f"Raw data received: {data}")
+            string = data.decode('utf-8', errors='ignore').strip()
 
             # remove characters before the first '{' and after the last '}' to ensure we have a valid JSON string
             string = string[string.find('{'):string.rfind('}')+1]
 
-            logger.debug(f"Received data: {string}")
+            logger.debug(f"Decoded data: {string}")
             if not data:
                 break
             message = json.loads(string)
