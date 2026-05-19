@@ -5,8 +5,10 @@ import socket
 import json
 import base64
 import os
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 TCP_HOST = "192.168.15.3"
 TCP_PORT = 63452

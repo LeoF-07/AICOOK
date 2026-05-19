@@ -23,13 +23,22 @@ lock = threading.Lock()
 
 client = None
 
+def findFirstFreeWorker():
+    for key, value in workers.items():
+        if value["state"] == True:
+            return key
+        
+    return False
+
+
+
 def parseMessage(action, payload, conn):
     if action == "hello":
         if payload.get("type") == "worker":
             # with lock:
             workers[conn] = {
                 "conn": conn,
-                "state": False
+                "state": True
             }
 
             print(len(workers))
@@ -39,139 +48,184 @@ def parseMessage(action, payload, conn):
                 "message": "hello ricevuto"
             }
 
-        elif action == "recipes":
-            arr_ricette = payload.get("recipes")
+    elif action == "recipes":
+        workers[conn]["state"] = True
+        
+        arr_ricette = payload.get("recipes")
 
-            for recipe in arr_ricette:
-                print("Inserimento ricetta")
+        for recipe in arr_ricette:
+            print("Inserimento ricetta")
+            cursor.execute("""
+                INSERT INTO ricette (nome, porzioni, tempo, tipologia)
+                VALUES (%s, %s, %s, %s)
+            """, (recipe["nome"], recipe["porzioni"], recipe["tempo_preparazione"], ""))
+            recipe_id = cursor.lastrowid
+
+            for ingrediente in recipe["ingredienti"]:
                 cursor.execute("""
-                    INSERT INTO ricette (nome, porzioni, tempo, tipologia)
-                    VALUES (%s, %s, %s, %s)
-                """, (recipe["nome"], recipe["porzioni"], recipe["tempo_preparazione"], ""))
-                recipe_id = cursor.lastrowid
+                    INSERT INTO ingredienti (id_ricetta, nome, quantita)
+                    VALUES (%s, %s, %s)
+                """, (recipe_id, ingrediente["nome"], ingrediente["quantita"] or ("qb")))
+                
+            for i, passo in enumerate(recipe["procedimento"]):
+                cursor.execute("""
+                    INSERT INTO procedimenti (id_ricetta, ordine, descrizione)
+                    VALUES (%s, %s, %s)
+                """, (recipe_id, i + 1, passo))
 
-                for ingrediente in recipe["ingredienti"]:
-                    cursor.execute("""
-                        INSERT INTO ingredienti (id_ricetta, nome, quantita)
-                        VALUES (%s, %s, %s)
-                    """, (recipe_id, ingrediente["nome"], ingrediente["quantita"] or ("qb")))
-                    
-                for i, passo in enumerate(recipe["procedimento"]):
-                    cursor.execute("""
-                        INSERT INTO procedimenti (id_ricetta, ordine, descrizione)
-                        VALUES (%s, %s, %s)
-                    """, (recipe_id, i + 1, passo))
+            db_conn.commit()
 
-                db_conn.commit()
+        response = {
+            "type": "scanned"
+        }
 
+        resp_bytes = (json.dumps(response) + "\n").encode("utf-8")
+        client.sendall(struct.pack('!I', len(resp_bytes)) + resp_bytes)
+        # client.sendall(resp_bytes)
+
+    elif action == "scanpdf":
+        client = conn
+
+        file_b64 = payload.get("file")
+
+        if not file_b64:
             response = {
-                "type": "scanned"
+                "status": "error",
+                "message": "File mancante"
             }
+        else:
+            try:
+                file_bytes = base64.b64decode(file_b64)
 
-            resp_bytes = (json.dumps(response) + "\n").encode("utf-8")
-            client.sendall(struct.pack('!I', len(resp_bytes)) + resp_bytes)
-            # client.sendall(resp_bytes)
+                reader = PdfReader(BytesIO(file_bytes))
+                text = ""
 
-        elif action == "scanpdf":
-            client = conn
+                for page in reader.pages:
+                    page_text = page.extract_text()
+                    if page_text:
+                        text += page_text + "\n"
 
-            file_b64 = payload.get("file")
-
-            if not file_b64:
                 response = {
-                    "status": "error",
-                    "message": "File mancante"
+                    "type": "scanpdf",
+                    "pdf_text": text
                 }
-            else:
-                try:
-                    file_bytes = base64.b64decode(file_b64)
 
-                    reader = PdfReader(BytesIO(file_bytes))
-                    text = ""
+                resp_bytes = (json.dumps(response) + "\n").encode("utf-8")
 
-                    for page in reader.pages:
-                        page_text = page.extract_text()
-                        if page_text:
-                            text += page_text + "\n"
-
+                conn = findFirstFreeWorker()
+                if not conn:
+                    print("Tutti i workers occupati")
                     response = {
-                        "type": "scanpdf",
-                        "pdf_text": text
+                        "type": "response",
+                        "response": "Ho troppe pentole sul fuoco, attendi un attimo! Riprova tra qualche minuto"
                     }
 
                     resp_bytes = (json.dumps(response) + "\n").encode("utf-8")
+                    client.sendall(struct.pack('!I', len(resp_bytes)) + resp_bytes)
 
-                    first_conn = next(iter(workers))
-                    workers[first_conn][conn].sendall(struct.pack('!I', len(resp_bytes)) + resp_bytes)
+                    return
 
-                    print(text)
+                # first_conn = next(iter(workers))
+                workers[conn]["conn"].sendall(struct.pack('!I', len(resp_bytes)) + resp_bytes)
+                workers[conn]["state"] = False
 
-                except Exception as e:
-                    print("Errore PDF (forse):", e)
-                    response = {
-                        "status": "error",
-                        "message": "Errore parsing PDF"
-                    }
-                    
-        elif action == "question":
-            client = conn
-            prompt = payload.get('prompt')
-            print(f"Question: {prompt}")
-            
-            response = {
-                "type": "genquery",
-                "request": prompt
-            }
+                print(text)
 
-            resp_bytes = (json.dumps(response) + "\n").encode("utf-8")
+            except Exception as e:
+                print("Errore PDF (forse):", e)
+                response = {
+                    "status": "error",
+                    "message": "Errore parsing PDF"
+                }
+                
+    elif action == "question":
+        client = conn
+        prompt = payload.get('prompt')
+        print(f"Question: {prompt}")
+        
+        response = {
+            "type": "genquery",
+            "request": prompt
+        }
 
-            first_conn = next(iter(workers))
-            workers[first_conn][conn].sendall(struct.pack('!I', len(resp_bytes)) + resp_bytes)
-            
-        elif action == "query":
-            query = payload.get("query")
+        resp_bytes = (json.dumps(response) + "\n").encode("utf-8")
 
-            print(f"Query: {query}\n\n")
-
-            cursor.execute(query)
-            #db_conn.commit()
-            
-            results = cursor.fetchall()
-
-            print(f"Results: {results}\n\n")
-            
-            response = {
-                "type": "genresponse",
-                "request": payload.get("request"),
-                "db_response": results
-            }
-
-            print(f"Response: {response}\n\n")
-
-            resp_bytes = (json.dumps(response) + "\n").encode("utf-8")
-
-            first_conn = next(iter(workers))
-            workers[first_conn][conn].sendall(struct.pack('!I', len(resp_bytes)) + resp_bytes)
-            
-            
-        elif action == "response":
-            res = payload.get("response")
-
-            print(f"Response: {res}")
-
+        conn = findFirstFreeWorker()
+        if not conn:
+            print("Tutti i workers occupati")
             response = {
                 "type": "response",
-                "response": res
+                "response": "Ho troppe pentole sul fuoco, attendi un attimo! Riprova tra qualche minuto"
             }
 
             resp_bytes = (json.dumps(response) + "\n").encode("utf-8")
             client.sendall(struct.pack('!I', len(resp_bytes)) + resp_bytes)
-            
-        else:
+
+            return
+        
+        workers[conn]["conn"].sendall(struct.pack('!I', len(resp_bytes)) + resp_bytes)
+        workers[conn]["state"] = False
+        
+    elif action == "query":
+        workers[conn]["state"] = True
+
+        query = payload.get("query")
+
+        print(f"Query: {query}\n\n")
+
+        cursor.execute(query)
+        #db_conn.commit()
+        
+        results = cursor.fetchall()
+
+        print(f"Results: {results}\n\n")
+        
+        response = {
+            "type": "genresponse",
+            "request": payload.get("request"),
+            "db_response": results
+        }
+
+        print(f"Response: {response}\n\n")
+
+        resp_bytes = (json.dumps(response) + "\n").encode("utf-8")
+
+        conn = findFirstFreeWorker()
+        if not conn:
+            print("Tutti i workers occupati")
             response = {
-                "status": "error",
-                "message": "Azione sconosciuta"
+                "type": "response",
+                "response": "Ho troppe pentole sul fuoco, attendi un attimo! Riprova tra qualche minuto"
             }
+
+            resp_bytes = (json.dumps(response) + "\n").encode("utf-8")
+            client.sendall(struct.pack('!I', len(resp_bytes)) + resp_bytes)
+
+            return
+        
+        workers[conn]["conn"].sendall(struct.pack('!I', len(resp_bytes)) + resp_bytes)
+        workers[conn]["state"] = False
+        
+        
+    elif action == "response":
+        workers[conn]["state"] = True
+        res = payload.get("response")
+
+        print(f"Response: {res}")
+
+        response = {
+            "type": "response",
+            "response": res
+        }
+
+        resp_bytes = (json.dumps(response) + "\n").encode("utf-8")
+        client.sendall(struct.pack('!I', len(resp_bytes)) + resp_bytes)
+        
+    else:
+        response = {
+            "status": "error",
+            "message": "Azione sconosciuta"
+        }
 
 
 def handle_client(conn):

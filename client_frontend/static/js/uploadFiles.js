@@ -43,6 +43,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 status.className = "success";
             }
 
+            else if(data.type == "response"){
+                status.innerText = data.response;
+                status.className = "error";
+            }
+
             console.log('data:', data);
         })
         .catch(error => {
